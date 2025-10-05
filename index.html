@@ -4,6 +4,15 @@
 
 <!-- Mirrored from theme-land.com/Pari/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Jun 2025 13:50:26 GMT -->
 <head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SFM0SNN09E"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);} 
+		gtag('js', new Date());
+
+		gtag('config', 'G-SFM0SNN09E');
+	</script>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,6 +42,7 @@
 			0%, 50% { border-color: transparent; }
 			51%, 100% { border-color: currentColor; }
 		}
+		
 		
 		/* Moving Software Logos Overlay Styles */
 		.software-logos-overlay {
@@ -179,6 +189,7 @@
 
 		<!-- ***** Main Wrapper Start ***** -->
 		<div id="main-wrapper" class="main-wrapper">
+			
 
 			<!-- ***** Hero Area Start ***** -->
 			<section id="home" class="hero-section">
@@ -929,7 +940,7 @@
 						<div class="col-12">
 							<div class="footer-content d-flex flex-wrap justify-content-center justify-content-md-between align-items-center py-4">
 								<!-- Copyright -->
-								<div class="copyright">&copy;2025 Pari </div>
+								<div class="copyright">&copy;2025 Pari. All Rights Reserved</div>
 								<!-- Scroll To Top -->
 								<div id="scroll-to-top" class="scroll-to-top mt-3 mt-sm-0">
 									<a href="#header" class="smooth-anchor">Scroll to Top</a>
@@ -1111,6 +1122,141 @@
 			}
 			
 			typeText();
+		});
+	</script>
+			
+			// Initialize speech recognition
+			if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+				const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+				recognition = new SpeechRecognition();
+				recognition.continuous = false;
+				recognition.interimResults = false;
+				recognition.lang = 'en-US';
+				
+				recognition.onstart = function() {
+					isListening = true;
+					voiceAgent.classList.add('listening');
+					voiceStatus.textContent = 'Listening...';
+					voiceStatus.classList.add('listening');
+				};
+				
+				recognition.onresult = function(event) {
+					const userInput = event.results[0][0].transcript;
+					processUserInputWithAI(userInput);
+				};
+				
+				recognition.onend = function() {
+					isListening = false;
+					voiceAgent.classList.remove('listening');
+					voiceStatus.textContent = 'Processing...';
+				};
+				
+				recognition.onerror = function(event) {
+					console.error('Speech recognition error:', event.error);
+					voiceAgent.classList.remove('listening');
+					voiceStatus.textContent = 'Sorry, I didn\'t catch that. Try again!';
+					voiceStatus.classList.remove('listening');
+				};
+			}
+			
+			// Process user input and generate response
+			function processUserInput(input) {
+				addMessage(input, 'user');
+				
+				// Determine response based on keywords
+				let response = '';
+				const inputLower = input.toLowerCase();
+				
+				if (inputLower.includes('hello') || inputLower.includes('hi') || inputLower.includes('hey')) {
+					response = getRandomResponse(knowledgeBase.greeting);
+				} else if (inputLower.includes('experience') || inputLower.includes('background') || inputLower.includes('career')) {
+					response = getRandomResponse(knowledgeBase.experience);
+				} else if (inputLower.includes('skill') || inputLower.includes('expertise') || inputLower.includes('ability')) {
+					response = getRandomResponse(knowledgeBase.skills);
+				} else if (inputLower.includes('project') || inputLower.includes('work') || inputLower.includes('portfolio')) {
+					response = getRandomResponse(knowledgeBase.projects);
+				} else if (inputLower.includes('education') || inputLower.includes('school') || inputLower.includes('university')) {
+					response = getRandomResponse(knowledgeBase.education);
+				} else if (inputLower.includes('achievement') || inputLower.includes('award') || inputLower.includes('success')) {
+					response = getRandomResponse(knowledgeBase.achievements);
+				} else if (inputLower.includes('contact') || inputLower.includes('email') || inputLower.includes('reach')) {
+					response = getRandomResponse(knowledgeBase.contact);
+				} else {
+					response = getRandomResponse(knowledgeBase.default);
+				}
+				
+				// Add response to chat
+				setTimeout(() => {
+					addMessage(response, 'agent');
+					speakText(response);
+				}, 500);
+			}
+			
+			// Get random response from array
+			function getRandomResponse(responses) {
+				return responses[Math.floor(Math.random() * responses.length)];
+			}
+			
+			// Add message to chat
+			function addMessage(text, sender) {
+				const messageDiv = document.createElement('div');
+				messageDiv.className = `voice-message ${sender}`;
+				messageDiv.textContent = text;
+				chatBody.appendChild(messageDiv);
+				chatBody.scrollTop = chatBody.scrollHeight;
+			}
+			
+			// Text-to-speech
+			function speakText(text) {
+				if ('speechSynthesis' in window) {
+					voiceAgent.classList.add('speaking');
+					voiceStatus.textContent = 'Speaking...';
+					voiceStatus.classList.add('speaking');
+					
+					const utterance = new SpeechSynthesisUtterance(text);
+					utterance.rate = 0.9;
+					utterance.pitch = 1;
+					utterance.volume = 0.8;
+					
+					utterance.onend = function() {
+						voiceAgent.classList.remove('speaking');
+						voiceStatus.textContent = 'Ready to listen!';
+						voiceStatus.classList.remove('speaking');
+					};
+					
+					speechSynthesis.speak(utterance);
+				}
+			}
+			
+			// Event listeners
+			voiceAgent.addEventListener('click', function() {
+				if (!isConnected) {
+					initializeRealtimeAPI();
+					voiceChat.classList.add('active');
+				} else if (recognition && !isListening && !isSpeaking) {
+					voiceChat.classList.add('active');
+					recognition.start();
+				} else if (!recognition) {
+					alert('Voice recognition not supported in this browser. Try Chrome or Safari!');
+				}
+			});
+			
+			closeChat.addEventListener('click', function() {
+				voiceChat.classList.remove('active');
+				if (isListening) {
+					recognition.stop();
+				}
+				if (isSpeaking) {
+					speechSynthesis.cancel();
+				}
+			});
+			
+			// Auto-close chat when clicking outside
+			document.addEventListener('click', function(e) {
+				if (!voiceChat.contains(e.target) && !voiceAgent.contains(e.target)) {
+					voiceChat.classList.remove('active');
+				}
+			});
 		});
 	</script>
 	
