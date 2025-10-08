@@ -205,6 +205,7 @@
 							</div>
 						</div>
 					</div>
+						
 
 					<!-- Process Section -->
 					<div class="row mt-5">
@@ -244,8 +245,33 @@
 										.letter-spacing-1 { letter-spacing: 0.1em; }
 										.fw-light { font-weight: 300; }
 										
-										/* Section Spacing */
-										.section-spacing { margin-top: 6rem; margin-bottom: 6rem; }
+		/* Section Spacing */
+		.section-spacing { margin-top: 6rem; margin-bottom: 250px; }
+		
+		/* Different spacing for each section */
+		/* Impact section - largest spacing */
+		.row:has(h6.title:contains("IMPACT")) { margin-bottom: 300px; }
+		
+		/* Strategy section */
+		.row:has(h6.title:contains("STRATEGY")) { margin-bottom: 250px; }
+		
+		/* Discover section */
+		.row:has(h6.title:contains("DISCOVER")) { margin-bottom: 200px; }
+		
+		/* Problem section */
+		.row:has(h6.title:contains("PROBLEM")) { margin-bottom: 180px; }
+		
+		/* Execution section */
+		.row:has(h6.title:contains("EXECUTION")) { margin-bottom: 160px; }
+		
+		/* Solution section */
+		.row:has(h4:contains("Solution")) { margin-bottom: 140px; }
+		
+		/* Validation section */
+		.row:has(h4:contains("Validation")) { margin-bottom: 120px; }
+		
+		/* Process section - smallest spacing */
+		.row:has(h6.title:contains("PROCESS")) { margin-bottom: 100px; }
 										
 										/* Enhanced Cards */
 										.metric-card {
@@ -1041,7 +1067,34 @@
           </div>
         </div>
       </div>
-						
+				
+	  <!-- Validation Section -->
+	  <div class="row mt-5 section-spacing">
+		<div class="col-12">
+			<h4 class="mb-3">Validation</h4>
+			<p class="mb-4">We validated the redesign through usability testing focused on speed, clarity, and confidence. Key outcomes are summarized below.</p>
+			<div class="row g-4">
+				<div class="col-md-4">
+					<div class="p-4 bg-light rounded-3 text-center">
+						<h5 class="mb-1">−20s</h5>
+						<small class="text-muted">Faster to first action</small>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="p-4 bg-light rounded-3 text-center">
+						<h5 class="mb-1">+56%</h5>
+						<small class="text-muted">Clarity uplift</small>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="p-4 bg-light rounded-3 text-center">
+						<h5 class="mb-1">89%</h5>
+						<small class="text-muted">User confidence</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 						
 						<!-- Process Section -->
 						<div class="row mt-5">
@@ -1092,23 +1145,6 @@
 	</section>
 	<!-- End Portfolio Single -->
 
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="footer-content">
-						<div class="footer-logo">
-							<a href="index.html">
-								<img src="assets/img/logo/logo.png" alt="Logo">
-							</a>
-	</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- End Footer -->
 
 	<!-- Scripts -->
 	<script src="assets/js/vendor/jquery.min.js"></script>
