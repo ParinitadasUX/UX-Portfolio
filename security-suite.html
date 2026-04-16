@@ -1,0 +1,1210 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SFM0SNN09E"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-SFM0SNN09E');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="description" content="Security Suite case study by Parinita Das">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Security Suite - Project Case Study</title>
+	<link rel="icon" href="assets/img/favicon.png">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+	<style>
+		/* Visible tooltip (native title is slow / easy to miss) */
+		.case-study-v .glossary-term {
+			position: relative;
+			display: inline-block;
+			cursor: help;
+			text-decoration: underline dotted;
+			text-decoration-skip-ink: none;
+			text-underline-offset: 0.15em;
+			outline: none;
+		}
+		.case-study-v .glossary-term abbr {
+			text-decoration: inherit;
+			cursor: inherit;
+			border: 0;
+		}
+		/* Let custom tips escape; avoid clipping from section layout */
+		.case-study-v .heading {
+			overflow: visible;
+		}
+		.case-study-v .glossary-term__tip {
+			position: absolute;
+			left: 50%;
+			bottom: calc(100% + 10px);
+			transform: translateX(-50%) translateY(4px);
+			padding: 0.5rem 0.9rem;
+			background: #e8e8e8;
+			color: #2a2a2a;
+			font-size: 0.8125rem;
+			font-weight: 500;
+			line-height: 1.35;
+			border-radius: 0;
+			border: 1px solid #d0d0d0;
+			/* Avoid shrink-to-fit to the narrow trigger (was stacking “Point / of / sale”) */
+			width: max-content;
+			max-width: min(28rem, calc(100vw - 1.5rem));
+			white-space: normal;
+			text-align: center;
+			box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.1);
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			z-index: 10050;
+			transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+		}
+		.case-study-v .glossary-term:hover .glossary-term__tip,
+		.case-study-v .glossary-term:focus .glossary-term__tip,
+		.case-study-v .glossary-term:focus-within .glossary-term__tip {
+			opacity: 1;
+			visibility: visible;
+			transform: translateX(-50%) translateY(0);
+		}
+		.quote-horizontal-container {
+			display: flex;
+			justify-content: center;
+			align-items: flex-end;
+			padding: 2rem 0;
+			position: relative;
+			height: 300px;
+		}
+		.quote-horizontal-card {
+			width: 250px;
+			height: 260px;
+			background: #fff;
+			border: 1px solid #e9ecef;
+			border-radius: 12px;
+			padding: 1.5rem;
+			transition: all 0.3s ease;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			position: absolute;
+			z-index: 1;
+			box-shadow: 0 8px 25px rgba(0,0,0,0.1), 0 3px 10px rgba(0,0,0,0.05);
+		}
+		.quote-horizontal-card:first-child {
+			left: 20%;
+			bottom: 0;
+			transform: rotate(-15deg);
+			z-index: 3;
+		}
+		.quote-horizontal-card:nth-child(2) {
+			left: 50%;
+			bottom: 40px;
+			transform: translateX(-50%) rotate(0deg);
+			z-index: 4;
+		}
+		.quote-horizontal-card:nth-child(3) {
+			right: 20%;
+			bottom: 0;
+			transform: rotate(15deg);
+			z-index: 3;
+		}
+		.quote-horizontal-card:hover {
+			transform: translateY(-15px) rotate(0deg) scale(1.05);
+			box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 8px 20px rgba(0,0,0,0.1);
+			z-index: 10;
+		}
+		.quote-text {
+			font-size: 0.9rem;
+			font-style: italic;
+			color: #2c3e50;
+			margin-bottom: 1rem;
+			line-height: 1.5;
+			position: relative;
+			font-weight: 400;
+			flex-grow: 1;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			line-clamp: 4;
+			-webkit-box-orient: vertical;
+		}
+		.quote-text::before {
+			content: '"';
+			font-size: 2.5rem;
+			color: #007bff;
+			position: absolute;
+			top: -8px;
+			left: -3px;
+			opacity: 0.6;
+			font-family: serif;
+			font-weight: bold;
+		}
+		.quote-author {
+			font-size: 0.85rem;
+			color: #6c757d;
+			font-weight: 500;
+			font-style: normal;
+			margin-top: auto;
+			text-align: center;
+		}
+		@media (max-width: 992px) {
+			.quote-horizontal-container {
+				height: auto;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1rem;
+				padding: 0;
+			}
+			.quote-horizontal-card,
+			.quote-horizontal-card:first-child,
+			.quote-horizontal-card:nth-child(2),
+			.quote-horizontal-card:nth-child(3) {
+				position: relative;
+				left: auto;
+				right: auto;
+				bottom: auto;
+				transform: none;
+				width: 100%;
+				height: auto;
+				min-height: 180px;
+			}
+		}
+		.laptop-mockup {
+			position: relative;
+			width: 100%;
+			max-width: 1400px;
+			margin-left: auto;
+			margin-right: auto;
+			line-height: 0;
+		}
+		.laptop-mockup__screen {
+			position: absolute;
+			z-index: 1;
+			left: 11.730769%;
+			top: 7.62987%;
+			width: 76.461538%;
+			height: 80.519481%;
+			overflow: hidden;
+			background: transparent;
+			border-radius: 3px;
+		}
+		.laptop-mockup__video {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center top;
+			background: #fff;
+		}
+		.laptop-mockup__iframe {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border: 0;
+			background: #1e1e1e;
+		}
+		.laptop-mockup__frame {
+			position: relative;
+			z-index: 2;
+			display: block;
+			width: 100%;
+			height: auto;
+			pointer-events: none;
+		}
+		.laptop-mockup--prototype {
+			max-width: 920px;
+		}
+		.prototype-showcase-bleed {
+			width: 100vw;
+			max-width: 100vw;
+			margin-left: calc(50% - 50vw);
+			margin-right: calc(50% - 50vw);
+			box-sizing: border-box;
+			background: linear-gradient(165deg, #e8f2ff 0%, #B3D2FF 42%, #d0e7ff 100%);
+		}
+		.prototype-showcase-inner {
+			padding-top: 2rem;
+			padding-bottom: 2.5rem;
+		}
+		@media (min-width: 768px) {
+			.prototype-showcase-inner {
+				padding-top: 2.5rem;
+				padding-bottom: 3rem;
+			}
+		}
+		.results-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1rem;
+		}
+		.results-card {
+			background: #f8fafc;
+			border: 1px solid rgba(15, 23, 42, 0.08);
+			border-radius: 0.85rem;
+			padding: 1.1rem 1rem;
+		}
+		.results-card--primary {
+			grid-column: span 2;
+			padding: 1.35rem 1.2rem;
+		}
+		.results-card h5 {
+			margin: 0 0 0.35rem 0;
+			font-size: 1.6rem;
+			font-weight: 700;
+			color: #3D81E6;
+		}
+		.results-card p {
+			margin: 0;
+			font-size: 0.95rem;
+			line-height: 1.45;
+			color: #334155;
+		}
+		.partner-logo-badge {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.2rem 0.45rem;
+			border-radius: 0.75rem;
+			overflow: hidden;
+		}
+		.partner-logo-badge img {
+			display: block;
+			height: 40px;
+			width: auto;
+			border-radius: 0.5rem;
+			filter: drop-shadow(0 6px 12px rgba(15, 23, 42, 0.25));
+		}
+		.results-card--no-logo-shadow .partner-logo-badge img {
+			filter: none;
+		}
+		.partner-logos {
+			display: flex;
+			gap: 0.5rem;
+			justify-content: center;
+			flex-wrap: wrap;
+			margin-top: 0.75rem;
+		}
+		.results-card--media {
+			grid-column: 1 / -1;
+		}
+		.media-stack {
+			position: relative;
+			width: 100%;
+			aspect-ratio: 16 / 9;
+			min-height: 220px;
+			margin-bottom: 0.75rem;
+		}
+		.media-stack-item {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 68%;
+			aspect-ratio: 16 / 9;
+			transform: translate(-50%, -50%);
+			border-radius: 0.55rem;
+			overflow: hidden;
+			padding: 10px;
+			box-sizing: border-box;
+			border: 1px solid rgba(15, 23, 42, 0.12);
+			box-shadow: 0 10px 26px rgba(15, 23, 42, 0.14);
+			transition: transform 320ms ease, box-shadow 320ms ease, filter 320ms ease, opacity 320ms ease;
+			background: #fff;
+			cursor: grab;
+			touch-action: none;
+			user-select: none;
+		}
+		.media-stack-item.is-dragging {
+			cursor: grabbing;
+			transition: none;
+			box-shadow: 0 16px 36px rgba(15, 23, 42, 0.2);
+		}
+		.media-stack-item img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			background: #fff;
+			cursor: grab;
+			touch-action: none;
+			user-select: none;
+			-webkit-user-drag: none;
+		}
+		.media-stack-item img.media-image-shadow {
+			box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+		}
+		.media-stack-link {
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			z-index: 4;
+			width: 28px;
+			height: 28px;
+			border-radius: 999px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: #1e40af;
+			background: rgba(255, 255, 255, 0.92);
+			box-shadow: 0 4px 10px rgba(15, 23, 42, 0.16);
+			text-decoration: none;
+			opacity: 0;
+			transform: translateY(-2px);
+			transition: opacity 180ms ease, transform 180ms ease;
+		}
+		.media-stack-item:hover .media-stack-link,
+		.media-stack-item:focus-within .media-stack-link {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		.media-stack-item:nth-child(1) {
+			z-index: 4;
+			transform: translate(-50%, -50%) rotate(-2deg);
+		}
+		.media-stack-item:nth-child(2) {
+			z-index: 3;
+			transform: translate(-50%, -50%) rotate(1deg);
+		}
+		.media-stack-item:nth-child(3) {
+			z-index: 2;
+			transform: translate(-50%, -50%) rotate(-1deg);
+		}
+		.media-stack-item:nth-child(4) {
+			z-index: 1;
+			transform: translate(-50%, -50%) rotate(2deg);
+		}
+		.media-stack-item:nth-child(5) {
+			z-index: 0;
+			transform: translate(-50%, -50%) rotate(-4deg);
+		}
+		.results-card--media:hover .media-stack-item,
+		.results-card--media:focus-within .media-stack-item {
+			filter: saturate(1.03);
+		}
+		.results-card--media:hover .media-stack-item:nth-child(1),
+		.results-card--media:focus-within .media-stack-item:nth-child(1) {
+			transform: translate(calc(-50% - 20%), calc(-50% - 5%)) rotate(-8deg);
+		}
+		.results-card--media:hover .media-stack-item:nth-child(2),
+		.results-card--media:focus-within .media-stack-item:nth-child(2) {
+			transform: translate(calc(-50% - 10%), calc(-50% - 1%)) rotate(-4deg);
+		}
+		.results-card--media:hover .media-stack-item:nth-child(3),
+		.results-card--media:focus-within .media-stack-item:nth-child(3) {
+			transform: translate(calc(-50% + 0%), calc(-50% + 1%)) rotate(1deg);
+		}
+		.results-card--media:hover .media-stack-item:nth-child(4),
+		.results-card--media:focus-within .media-stack-item:nth-child(4) {
+			transform: translate(calc(-50% + 10%), calc(-50% + 4%)) rotate(6deg);
+		}
+		.results-card--media:hover .media-stack-item:nth-child(5),
+		.results-card--media:focus-within .media-stack-item:nth-child(5) {
+			transform: translate(calc(-50% + 20%), calc(-50% + 7%)) rotate(9deg);
+		}
+		@media (max-width: 991px) {
+			.results-grid {
+				grid-template-columns: 1fr;
+			}
+			.results-card--primary {
+				grid-column: auto;
+			}
+			.media-stack {
+				min-height: 180px;
+			}
+		}
+		.current-problem-bullets {
+			font-size: 8px;
+			line-height: 1.4;
+		}
+		.current-problem-bullets li {
+			margin-bottom: 0.2rem;
+		}
+		.current-problem-bullets li:last-child {
+			margin-bottom: 0;
+		}
+		@media (min-width: 992px) {
+			.current-problem-bullets-col {
+				padding-right: 0.5rem;
+			}
+			.current-problem-bullets {
+				max-width: 20rem;
+			}
+		}
+		.research-finding-collage {
+			position: relative;
+			border-radius: 16px;
+			overflow: hidden;
+			background: #f3f4f7;
+			padding: 1.25rem;
+			border: 1px solid rgba(0, 0, 0, 0.06);
+		}
+		.research-finding-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 0.75rem;
+			opacity: 0.28;
+			filter: saturate(0.92);
+		}
+		.research-finding-grid img {
+			width: 100%;
+			height: 138px;
+			object-fit: cover;
+			border-radius: 8px;
+			display: block;
+			background: #fff;
+		}
+		.research-finding-insight {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: min(580px, calc(100% - 2.5rem));
+			background: rgba(255, 255, 255, 0.93);
+			backdrop-filter: blur(2px);
+			border-radius: 14px;
+			padding: 1.25rem 1.5rem;
+			box-shadow: 0 22px 48px rgba(0, 0, 0, 0.13);
+		}
+		.research-finding-insight p {
+			margin: 0;
+			font-size: 2rem;
+			font-weight: 800;
+			line-height: 1.2;
+			color: #171717;
+		}
+		.research-finding-insight .accent {
+			color: #3D81E6;
+		}
+		.data-flow-chart-img {
+			display: block;
+			width: 100%;
+			max-width: min(72%, 720px);
+			height: auto;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		/* Match results-card body copy for Learning outcome tiles */
+		.case-study-v .learning-outcome-lede {
+			font-size: clamp(1.08rem, 2vw, 1.28rem);
+			line-height: 1.5;
+			color: #334155;
+		}
+		.zoomable-image {
+			cursor: zoom-in;
+		}
+		.image-zoom-modal {
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.88);
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 2rem;
+			z-index: 12000;
+		}
+		.image-zoom-modal.is-open {
+			display: flex;
+		}
+		.image-zoom-modal img {
+			max-width: min(1200px, 95vw);
+			max-height: 90vh;
+			width: auto;
+			height: auto;
+			border-radius: 10px;
+			box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+		}
+		.miro-sketch-frame {
+			position: relative;
+			display: block;
+		}
+		.miro-sketch-layers {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			overflow: hidden;
+			border-radius: 0.375rem;
+		}
+		.miro-sketch-highlight {
+			position: absolute;
+			left: 8%;
+			top: 18%;
+			width: 84%;
+			height: 52%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transform: rotate(-1.5deg);
+		}
+		.miro-sketch-circle-ring {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+		}
+		.miro-sketch-highlight-text {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			padding: 0 10%;
+			font-family: "Caveat", cursive;
+			font-weight: 700;
+			font-size: clamp(1.15rem, 2.6vw, 1.65rem);
+			line-height: 1.15;
+			text-align: center;
+			color: rgba(28, 28, 28, 0.92);
+			text-shadow: 0 0 1px rgba(255, 255, 255, 0.55);
+			max-width: 88%;
+		}
+		@media (max-width: 991px) {
+			.miro-sketch-highlight {
+				left: 5%;
+				top: 16%;
+				width: 90%;
+				height: 48%;
+			}
+			.miro-sketch-highlight-text {
+				font-size: clamp(1rem, 3.2vw, 1.35rem);
+				padding: 0 6%;
+			}
+		}
+		/* Vertical rhythm: same values on all breakpoints */
+		.case-study-v {
+			--vs-section: 9.5rem;
+			--vs-topic: 10.5rem;
+			--vs-after-block: 6rem;
+		}
+		.case-study-v .case-study-phase {
+			margin-top: var(--vs-section);
+		}
+		.case-study-v .case-study-subtopic {
+			margin-top: var(--vs-topic);
+		}
+		.case-study-v .case-study-subtopic.case-study-subtopic--tight-top {
+			margin-top: clamp(2rem, 4vw, 3.25rem);
+		}
+		.case-study-v .case-study-subtopic.case-study-subtopic--after-discovery-heading {
+			margin-top: clamp(0.35rem, 1.2vw, 0.85rem);
+		}
+		.hardware-data-image-wrap {
+			padding: 2rem 3.5rem;
+		}
+		.hardware-data-annotated {
+			position: relative;
+			overflow: visible;
+		}
+		.hardware-data-annotated__base {
+			display: block;
+			width: min(92%, 1160px);
+			height: auto;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.case-study-v .case-study-after-block {
+			margin-bottom: var(--vs-after-block);
+		}
+		@media (max-width: 767px) {
+			.hardware-data-image-wrap {
+				padding: 1.25rem 1.75rem;
+			}
+		}
+		.case-study-v .case-study-quote-heading {
+			margin-top: 1.25rem;
+		}
+		.image-zoom-close {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			border: 0;
+			background: rgba(255, 255, 255, 0.18);
+			color: #fff;
+			width: 40px;
+			height: 40px;
+			border-radius: 999px;
+			font-size: 1.5rem;
+			line-height: 1;
+			cursor: pointer;
+		}
+		@media (max-width: 991px) {
+			.research-finding-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			.research-finding-grid img {
+				height: 118px;
+			}
+			.research-finding-insight p {
+				font-size: 1.3rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<script>
+		(function () {
+			var SECURITY_SUITE_PASSWORD = "PDASDESIGN";
+			var unlocked = sessionStorage.getItem("securitySuiteUnlocked") === "true";
+			if (unlocked) return;
+
+			var password = prompt("This project is password protected. Please enter the password:");
+			if (password === SECURITY_SUITE_PASSWORD) {
+				sessionStorage.setItem("securitySuiteUnlocked", "true");
+				return;
+			}
+
+			if (password !== null) {
+				alert("Incorrect password. Returning to home.");
+			}
+			window.location.href = "index.html";
+		})();
+	</script>
+	<div id="magic-cursor"><div id="cursor"></div></div>
+	<div class="preloader">
+		<svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><path id="loader" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path></svg>
+		<div class="loader-container"><div class="loaded"><span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span></div></div>
+	</div>
+
+	<div class="main">
+		<header id="header">
+			<nav class="navbar navbar-expand">
+				<div class="container header">
+					<div class="magnetic"><a class="navbar-brand" href="index.html">Pari.</a></div>
+					<div class="ms-auto"></div>
+					<ul class="navbar-nav items d-none d-md-block">
+						<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+						<li class="nav-item"><a href="index.html#works" class="nav-link">Works</a></li>
+						<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+						<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+					</ul>
+					<div class="navbar-toggler scrolled" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+						<div class="navbar-header"><div class="content"><div class="toggler-icon"></div><span class="title">Menu</span></div></div>
+					</div>
+				</div>
+			</nav>
+			<div id="navbar-main" class="main"></div>
+		</header>
+
+		<div id="main-wrapper" class="main-wrapper">
+			<section class="content case-study-v">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-12 col-lg-5">
+							<div class="heading">
+								<div class="portfolio-meta d-flex align-items-center">
+									<div class="portfolio-terms">
+										<a class="terms" href="#">Enterprise</a>
+										<a class="terms" href="#">Data Visualization</a>
+									</div>
+									<span class="date">10 months</span>
+								</div>
+								<h2>Security Suite</h2>
+								<p><a href="https://commerce.toshiba.com/" target="_blank" rel="noopener">Toshiba ELERA®</a> introduced Security Suite, a software solution that uses data from <span class="glossary-term" tabindex="0"><abbr>POS</abbr><span class="glossary-term__tip" role="tooltip">Point of sale</span></span> hardware to address retail <span class="glossary-term" tabindex="0"><abbr>shrink</abbr><span class="glossary-term__tip" role="tooltip">Loss of inventory due to theft or error</span></span> and improve self-checkout experiences through AI insights.</p>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 items portfolio-meta mt-3 mt-md-0">
+							<div class="Problem">
+								<h6 class="title mb-3">Problem</h6>
+								<span class="details">Insufficient data makes it difficult to <span style="background-color: #ebedf0; padding: 2px 4px; border-radius: 3px;">detect or monitor store losses in self-checkout</span> without affecting transaction speed.</span>
+							</div>
+							<div class="content item d-flex flex-column flex-md-row justify-content-between">
+								<div class="role">
+									<h6 class="title mt-0 mb-1 mb-md-3">Role</h6>
+									<div class="portfolio-terms"><a class="terms" href="#">UX Designer</a></div>
+								</div>
+								<div class="Tools my-3 my-md-0">
+									<h6 class="title mt-0 mb-1 mb-md-3">Tools</h6>
+									<span>Figma, Miro, User Interviews</span>
+								</div>
+								<div class="Team">
+									<h6 class="title mt-0 mb-1 mb-md-3">Team</h6>
+									<span>1 Design Manager, 3 PO, 1 Engineer</span>
+								</div>
+							</div>
+							<div class="socials item">
+								<a class="nav-link d-inline-flex swap-icon ms-0" href="https://commerce.toshiba.com/wps/portal/marketing/?urile=wcm:path:/en-us/home/software/iot-suite/elera-security-suite">View Product<i class="icon bi bi-arrow-right-short"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="row portfolio-content items">
+						<div class="col-12">
+							<div class="reveal-img item" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
+								<img src="assets/img/content/SS%20Banner.png" alt="Security Suite overview" style="width: 100%; display: block;">
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-phase">
+						<div class="col-12">
+							<h6 class="title mb-3">IMPACT</h6>
+						</div>
+					</div>
+
+					<div class="row g-4 case-study-after-block">
+						<div class="col-lg-4 col-md-6 d-flex">
+							<div class="p-4 bg-light rounded-3 text-center h-100 w-100">
+								<h3 class="text-primary mb-2">243 locations</h3>
+								<h6 class="mb-1">Stores Adopted</h6>
+								<small class="text-muted">Chains like Olímpica S.A, Weis Markets & Grupo El Rosado</small>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 d-flex">
+							<div class="p-4 bg-light rounded-3 text-center h-100 w-100">
+								<h3 class="text-primary mb-2">Media Coverage</h3>
+								<h6 class="mb-1">Got Recognized</h6>
+								<small class="text-muted">Featered in articles for retail security</small>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-12 d-flex">
+							<div class="p-4 bg-light rounded-3 text-center h-100 w-100">
+								<h3 class="text-primary mb-2">50%-70%</h3>
+								<h6 class="mb-1">Self-Checkout Growth</h6>
+								<small class="text-muted">Increase in self-checkout transactions</small>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-phase">
+						<div class="col-12">
+							<h6 class="title mb-2">DISCOVERY</h6>
+						</div>
+					</div>
+
+					<div class="row case-study-subtopic case-study-subtopic--after-discovery-heading">
+						<div class="col-12">
+							<h4 class="mb-3">Understanding Hardware and Data Flow</h4>
+							<p class="mb-3">It was important to start by understanding self-checkout kiosk hardware and how its sensor data can be used to design a Security Suite dashboard to monitor events over time and enable action to prevent store losses.</p>
+							<div class="item hardware-data-image-wrap hardware-data-annotated">
+								<video id="hardware-data-video" class="img-fluid rounded-3 hardware-data-annotated__base" muted playsinline webkit-playsinline preload="auto" title="Point-of-sale hardware and data flow context">
+									<source src="assets/img/content/POS.mp4" type="video/mp4">
+									Your browser does not support embedded video.
+								</video>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-subtopic case-study-subtopic--tight-top">
+						<div class="col-12">
+							<h5 class="mb-3 text-center case-study-quote-heading">Data flow</h5>
+							<div class="item">
+								<img src="assets/img/content/data%20flow%20chart.png" alt="Security Suite data flow diagram" class="img-fluid rounded-3 mx-auto d-block data-flow-chart-img">
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-phase">
+						<div class="col-12">
+							<h4 class="mb-3">Understanding Stakeholders</h4>
+							<p class="mb-4">I worked with cross-functional stakeholders and users to map critical loss prevention tasks, identify bottlenecks in event triage, and define which data charts mattered most for fast, high-confidence decisions.</p>
+						</div>
+					</div>
+
+					<div class="row g-4 case-study-after-block">
+						<div class="col-12 col-md-6 text-center">
+							<div class="reveal-img item">
+								<img src="assets/img/content/SS%20Research.png" alt="Security Suite research insights" class="img-fluid rounded-3 mx-auto d-block" style="height: 210px; width: auto; max-width: 100%; object-fit: contain;">
+							</div>
+							<p class="text-muted small mt-2 mb-0"><strong>20 User + 4 stakeholder</strong> interview</p>
+						</div>
+						<div class="col-12 col-md-6 text-center">
+							<div class="reveal-img item">
+								<img src="assets/img/content/SS%20Research%202.png" alt="Security Suite research board" class="img-fluid rounded-3 mx-auto d-block" style="height: 210px; width: auto; max-width: 100%; object-fit: contain;">
+							</div>
+							<p class="text-muted small mt-2 mb-0"><strong>Understanding Road Map</strong> with stake holders</p>
+						</div>
+					</div>
+
+					<div class="row case-study-phase">
+						<div class="col-12">
+							<h4 class="mb-4">Current Problem</h4>
+							<div class="row g-4 align-items-start align-items-lg-end case-study-after-block">
+								<div class="col-12 col-lg-4 current-problem-bullets-col">
+									<ul class="mb-0 ps-3 current-problem-bullets">
+										<li><strong>Not Enough Data:</strong> Only high-level loss data is available; no drill-down for action.</li>
+										<li><strong>Hardware Limitations:</strong> Produce switch loss isn’t captured due to hardware limits.</li>
+									</ul>
+								</div>
+								<div class="col-12 col-lg-8">
+									<div class="item">
+										<div class="laptop-mockup">
+											<div class="laptop-mockup__screen">
+												<video id="current-problem-video" class="laptop-mockup__video" controls playsinline webkit-playsinline loop muted preload="auto" title="Current Security Suite app screen recording">
+													<source src="assets/img/content/Current%20App.mp4" type="video/mp4">
+													Your browser does not support embedded video. <a href="assets/img/content/Current%20App.mp4">Download the clip</a>.
+												</video>
+											</div>
+											<img class="laptop-mockup__frame" src="assets/img/content/35202486_laptop_realistic.svg" width="520" height="308" alt="" aria-hidden="true">
+										</div>
+										<p class="text-muted small mt-2 mb-0 text-center">Current Security Suite app view used by Loss Prevention Manager</p>
+									</div>
+								</div>
+							</div>
+							<h5 class="text-center case-study-quote-heading case-study-after-block">What Stakeholders Told Us</h5>
+							<div class="quote-horizontal-container">
+								<div class="quote-horizontal-card">
+									<blockquote class="quote-text">
+										"We are facing trouble with produce switching, it is not captured in the current app."
+									</blockquote>
+									<cite class="quote-author">- LP Manager</cite>
+								</div>
+								<div class="quote-horizontal-card">
+									<blockquote class="quote-text">
+										"Not enough data is available to track produce switching loss."
+									</blockquote>
+									<cite class="quote-author">- PO</cite>
+								</div>
+								<div class="quote-horizontal-card">
+									<blockquote class="quote-text">
+										"The SS don't help me take action to prevent losses."
+									</blockquote>
+									<cite class="quote-author">- LP Manager</cite>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-phase">
+						<div class="col-12">
+							<h6 class="title mb-3">DEFINE</h6>
+							<h4 class="mb-3">Objective</h4>
+							<div class="p-4 bg-light rounded-3 text-start">
+								<p class="text-dark mb-0 fs-4">A Security Suite <strong>data visualisation</strong> dashboard that leverages detailed <strong>hardware data</strong> to <strong>monitor</strong> and <strong>detect loss in self-checkout</strong> without affecting transaction speed.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-subtopic">
+						<div class="col-12">
+							<h4 class="mb-3">Persona</h4>
+							<div class="reveal-img item">
+								<img src="assets/img/content/Persona.png" alt="Security Suite persona" class="img-fluid rounded-3">
+							</div>
+							<p class="text-muted small mt-2 mb-0 text-center">This persona was synthesized from user interviews conducted with 20 users.</p>
+						</div>
+					</div>
+
+					<div class="row case-study-subtopic">
+						<div class="col-12">
+							<h4 class="mb-3">What are we prioritizing for 1st Version Release?</h4>
+							<div class="row g-4 align-items-center case-study-after-block">
+								<div class="col-12 col-lg-5">
+									<p class="mb-0">After creating 49 data charts and tables, I conducted a research session to understand what stakeholders prioritized and which data mattered most for decision-making. In this section, I used a Miro board to organize and rearrange charts based on stakeholder priorities.</p>
+								</div>
+								<div class="col-12 col-lg-7">
+									<div class="reveal-img item mb-0 miro-sketch-frame">
+										<img src="assets/img/content/Miro%20SS.png" alt="Security Suite Miro research board" class="img-fluid rounded-3 zoomable-image" data-zoom-src="assets/img/content/Miro%20SS.png">
+									</div>
+									<p class="text-muted small mt-2 mb-0 text-center">Resrach tool: Miro</p>
+								</div>
+							</div>
+							<h5 class="mb-3 text-center case-study-quote-heading">Research Finding</h5>
+							<div class="research-finding-collage">
+								<div class="research-finding-grid" aria-hidden="true">
+									<img src="assets/img/content/Charts%201.png" alt="">
+									<img src="assets/img/content/Charts%202.png" alt="">
+									<img src="assets/img/content/Charts%203.png" alt="">
+									<img src="assets/img/content/Charts%204.png" alt="">
+									<img src="assets/img/content/Charts%205.png" alt="">
+									<img src="assets/img/content/Charts%206.png" alt="">
+									<img src="assets/img/content/Charts%207.png" alt="">
+									<img src="assets/img/content/Charts%208.png" alt="">
+								</div>
+								<div class="research-finding-insight">
+									<p>Out of <span class="accent">49 charts+tables</span> only <span class="accent">15 charts+tables</span> made it to the final dashboard.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-phase g-0">
+						<div class="col-12 px-0">
+							<div class="prototype-showcase-bleed">
+								<div class="container prototype-showcase-inner">
+									<h4 class="mb-3">Interactive prototype</h4>
+									<p class="text-muted mb-4">Explore the Security Suite loss-prevention prototype in Figma (desktop width).</p>
+									<div class="laptop-mockup laptop-mockup--prototype">
+										<div class="laptop-mockup__screen">
+											<iframe class="laptop-mockup__iframe" title="Security Suite LP prototype — Figma embed" loading="lazy" allowfullscreen src="https://embed.figma.com/proto/FCqKvl6gJC2XWBWJfVWUtC/SS---LP-Prototype?page-id=1%3A19&amp;node-id=1-8649&amp;viewport=392%2C173%2C0.11&amp;scaling=scale-down-width&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A8649&amp;embed-host=share"></iframe>
+										</div>
+										<img class="laptop-mockup__frame" src="assets/img/content/35202486_laptop_realistic.svg" width="520" height="308" alt="" aria-hidden="true">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-phase">
+						<div class="col-12">
+							<h6 class="title mb-3">RESULTS</h6>
+							<h4 class="mb-3">Outcome after launch</h4>
+							<div class="results-grid">
+								<div class="results-card results-card--no-logo-shadow results-card--primary">
+									<h5>243 New Locations</h5>
+									<p>Companies across the globe adopted Security Suite workflows.</p>
+									<div class="partner-logos">
+										<div class="partner-logo-badge" aria-label="Olimpica partner logo">
+											<img src="assets/img/content/Olimpical.png" alt="Olimpica logo">
+										</div>
+										<div class="partner-logo-badge" aria-label="Weis Markets partner logo">
+											<img src="assets/img/content/Weis_Markets_logo.svg.png" alt="Weis Markets logo">
+										</div>
+										<div class="partner-logo-badge" aria-label="El Rosado partner logo">
+											<img src="assets/img/content/LOGO-ROSADO.png" alt="El Rosado logo">
+										</div>
+									</div>
+								</div>
+								<div class="results-card">
+									<h5>50%-70%</h5>
+									<p>Increase in self-checkout transactions reported by stores using Security Suite.</p>
+								</div>
+								<div class="results-card results-card--media">
+									<h5>Media Coverage</h5>
+									<div class="media-stack" aria-hidden="true">
+										<div class="media-stack-item" data-link="https://magazine.retail-today.com/q4_2025_quarterly_executive_roundtable/toshiba">
+											<a class="media-stack-link" href="https://magazine.retail-today.com/q4_2025_quarterly_executive_roundtable/toshiba" target="_blank" rel="noopener" aria-label="Open media coverage article for image 1"><i class="bi bi-box-arrow-up-right"></i></a>
+											<img src="assets/img/content/mc.png" alt="">
+										</div>
+										<div class="media-stack-item" data-link="https://rethink.industries/articles/intelligence-at-the-edge-how-new-retail-security-innovations-are-evolving-from-control-to-enablement/">
+											<a class="media-stack-link" href="https://rethink.industries/articles/intelligence-at-the-edge-how-new-retail-security-innovations-are-evolving-from-control-to-enablement/" target="_blank" rel="noopener" aria-label="Open media coverage article for image 2"><i class="bi bi-box-arrow-up-right"></i></a>
+											<img src="assets/img/content/MC2.png" alt="">
+										</div>
+										<div class="media-stack-item" data-link="https://rethink.industries/video/how-toshibas-ai-and-edge-solutions-are-redefining-retail-security-and-empowering-teams/">
+											<a class="media-stack-link" href="https://rethink.industries/video/how-toshibas-ai-and-edge-solutions-are-redefining-retail-security-and-empowering-teams/" target="_blank" rel="noopener" aria-label="Open media coverage article for image 3"><i class="bi bi-box-arrow-up-right"></i></a>
+											<img src="assets/img/content/MC%203.png" alt="">
+										</div>
+										<div class="media-stack-item" data-link="https://magazine.retail-today.com/q4_2025_quarterly_executive_roundtable/toshiba">
+											<a class="media-stack-link" href="https://magazine.retail-today.com/q4_2025_quarterly_executive_roundtable/toshiba" target="_blank" rel="noopener" aria-label="Open media coverage article for image 4"><i class="bi bi-box-arrow-up-right"></i></a>
+											<img src="assets/img/content/MC4.png" alt="">
+										</div>
+										<div class="media-stack-item" data-link="https://www.businesswire.com/news/home/20260226148227/en/Toshibas-ELERA-Security-Suite-Powers-Grupo-El-Rosado-with-Faster-Checkouts-and-Smarter-Stores?utm_campaign=shareaholic&utm_medium=copy_link&utm_source=bookmark">
+											<a class="media-stack-link" href="https://www.businesswire.com/news/home/20260226148227/en/Toshibas-ELERA-Security-Suite-Powers-Grupo-El-Rosado-with-Faster-Checkouts-and-Smarter-Stores?utm_campaign=shareaholic&utm_medium=copy_link&utm_source=bookmark" target="_blank" rel="noopener" aria-label="Open media coverage article for image 5"><i class="bi bi-box-arrow-up-right"></i></a>
+											<img src="assets/img/content/MC5.png" alt="" class="media-image-shadow">
+										</div>
+									</div>
+									<p class="text-center">Hover to view all, drag to browse.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row case-study-subtopic">
+						<div class="col-12">
+							<h4 class="mb-3">Learning outcome</h4>
+							<div class="row g-4 case-study-after-block">
+								<div class="col-md-6 d-flex">
+									<div class="p-4 bg-light rounded-3 w-100">
+										<p class="learning-outcome-lede mb-0"><strong>01.</strong> <strong>Early feedback</strong> = clearer, more impactful design.</p>
+									</div>
+								</div>
+								<div class="col-md-6 d-flex">
+									<div class="p-4 bg-light rounded-3 w-100">
+										<p class="learning-outcome-lede mb-0"><strong>02.</strong> Enabled quick recognition of trends to support timely decision-making.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+			<div id="image-zoom-modal" class="image-zoom-modal" aria-hidden="true">
+				<button class="image-zoom-close" id="image-zoom-close" aria-label="Close image zoom">&times;</button>
+				<img id="image-zoom-preview" src="" alt="Zoomed image preview">
+			</div>
+
+			<section class="cta border-top border-light-subtle">
+				<div class="container">
+					<div class="row justify-content-center text-center">
+						<div class="col-12 col-md-10 col-lg-7">
+							<h2 class="title mb-0 mb-md-2">Let's Create Something</h2>
+							<div class="cta-text">
+								<span class="line-item">Together</span><span class="line"></span>
+								<a class="btn magnetic-button" href="contact.html">Get In Touch! <i class="icon bi bi-arrow-right ms-1"></i><span></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<footer class="footer-area">
+				<div class="container">
+					<div class="row"><div class="col-12">
+						<div class="footer-content d-flex flex-wrap justify-content-center justify-content-md-between align-items-center py-4">
+							<div class="copyright">&copy;2025 Pari. All Rights Reserved</div>
+							<div id="scroll-to-top" class="scroll-to-top mt-3 mt-sm-0"><a href="#header" class="smooth-anchor">Scroll to Top</a></div>
+						</div>
+					</div></div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="assets/js/vendor/jquery.min.js"></script>
+	<script src="assets/js/vendor/popper.min.js"></script>
+	<script src="assets/js/vendor/bootstrap.min.js"></script>
+	<script src="assets/js/vendor/all.min.js"></script>
+	<script src="assets/js/vendor/gsap.min.js"></script>
+	<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+	<script src="assets/js/vendor/lenis.min.js"></script>
+	<script src="assets/js/vendor/SplitType.min.js"></script>
+	<script src="assets/js/vendor/shuffle.min.js"></script>
+	<script src="assets/js/vendor/gallery.min.js"></script>
+	<script src="assets/js/vendor/slider.min.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		(function () {
+			var modal = document.getElementById('image-zoom-modal');
+			var preview = document.getElementById('image-zoom-preview');
+			var closeBtn = document.getElementById('image-zoom-close');
+			if (!modal || !preview || !closeBtn) return;
+
+			function closeModal() {
+				modal.classList.remove('is-open');
+				modal.setAttribute('aria-hidden', 'true');
+				preview.src = '';
+			}
+
+			document.querySelectorAll('[data-zoom-src]').forEach(function (img) {
+				img.addEventListener('click', function () {
+					preview.src = img.getAttribute('data-zoom-src');
+					modal.classList.add('is-open');
+					modal.setAttribute('aria-hidden', 'false');
+				});
+			});
+
+			closeBtn.addEventListener('click', closeModal);
+			modal.addEventListener('click', function (e) {
+				if (e.target === modal) closeModal();
+			});
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+			});
+		})();
+
+		(function () {
+			var video = document.getElementById('current-problem-video');
+			var host = video ? video.closest('.laptop-mockup') : null;
+			if (!video || typeof IntersectionObserver === 'undefined') return;
+			function tryPlay() {
+				video.muted = true;
+				var p = video.play();
+				if (p && typeof p.catch === 'function') p.catch(function () {});
+			}
+			var observer = new IntersectionObserver(function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) tryPlay();
+					else video.pause();
+				});
+			}, { threshold: 0.15, rootMargin: '0px' });
+			observer.observe(host || video);
+		})();
+
+		(function () {
+			var video = document.getElementById('hardware-data-video');
+			var host = video ? video.closest('.hardware-data-annotated') : null;
+			if (!video || !host || typeof IntersectionObserver === 'undefined') return;
+			var isInView = false;
+
+			function tryPlay() {
+				if (!isInView) return;
+				/* If user re-enters section after video ended, restart from beginning. */
+				if (video.ended) video.currentTime = 0;
+				video.muted = true;
+				video.playsInline = true;
+				var p = video.play();
+				if (p && typeof p.catch === 'function') {
+					p.catch(function () {});
+				}
+			}
+
+			video.addEventListener('loadedmetadata', function () {
+				tryPlay();
+			});
+
+			var observer = new IntersectionObserver(function (entries) {
+				entries.forEach(function (entry) {
+					isInView = entry.isIntersecting;
+					if (isInView) {
+						tryPlay();
+					} else {
+						video.pause();
+					}
+				});
+			}, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+			observer.observe(host);
+		})();
+
+		(function () {
+			var images = document.querySelectorAll('.results-card--media .media-stack-item img');
+			if (!images.length) return;
+
+			images.forEach(function (imageEl) {
+				var card = imageEl.closest('.media-stack-item');
+				if (!card) return;
+				var startX = 0;
+				var startY = 0;
+				var dx = 0;
+				var dy = 0;
+				var moved = false;
+				var dragging = false;
+				var baseTransform = '';
+				var previousZ = card.style.zIndex || '';
+
+				imageEl.addEventListener('pointerdown', function (e) {
+					e.preventDefault();
+					dragging = true;
+					startX = e.clientX;
+					startY = e.clientY;
+					dx = 0;
+					dy = 0;
+					moved = false;
+					baseTransform = getComputedStyle(card).transform;
+					if (!baseTransform || baseTransform === 'none') baseTransform = '';
+					previousZ = card.style.zIndex || '';
+					card.style.zIndex = '30';
+					card.classList.add('is-dragging');
+					imageEl.setPointerCapture(e.pointerId);
+				});
+
+				imageEl.addEventListener('pointermove', function (e) {
+					if (!dragging) return;
+					dx = e.clientX - startX;
+					dy = e.clientY - startY;
+					if (Math.abs(dx) > 6 || Math.abs(dy) > 6) moved = true;
+					card.style.transform = (baseTransform ? baseTransform + ' ' : '') + 'translate(' + dx + 'px, ' + dy + 'px)';
+				});
+
+				function resetCard(e) {
+					if (!dragging) return;
+					dragging = false;
+					card.classList.remove('is-dragging');
+					if (e && typeof e.pointerId !== 'undefined') {
+						try { imageEl.releasePointerCapture(e.pointerId); } catch (_) {}
+					}
+
+					/* Dragging a card rotates it to the back of the pile. */
+					if (moved && card.parentElement) {
+						card.parentElement.appendChild(card);
+					}
+
+					card.style.zIndex = previousZ;
+					card.style.transition = 'transform 260ms ease, box-shadow 260ms ease';
+					card.style.transform = '';
+					window.setTimeout(function () {
+						card.style.transition = '';
+					}, 280);
+				}
+
+				imageEl.addEventListener('pointerup', resetCard);
+				imageEl.addEventListener('pointercancel', resetCard);
+				imageEl.addEventListener('lostpointercapture', resetCard);
+				imageEl.addEventListener('dragstart', function (e) {
+					e.preventDefault();
+				});
+			});
+		})();
+	</script>
+</body>
+</html>

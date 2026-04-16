@@ -105,6 +105,30 @@
 				transform: translateX(-50%);
 			}
 		}
+
+		/* Selected Works — Security Suite: one link for full card (thumb + overlay); inner CTA is a span */
+		.portfolio-item .show-project .project-link .portfolio-link-cta {
+			position: relative;
+			color: var(--primary-p-color);
+			font-weight: 600;
+		}
+		.portfolio-item.layout-2 .card-overlay .show-project .project-link .portfolio-link-cta {
+			color: var(--white-color);
+		}
+		.portfolio-item .show-project .project-link .portfolio-link-cta::after {
+			position: absolute;
+			content: "";
+			top: 48%;
+			right: -0.5rem;
+			height: 2px;
+			width: 3rem;
+			background-color: currentColor;
+			transform: translate(100%, 50%);
+		}
+		.portfolio-item .card-terms span.terms.badge.outlined {
+			cursor: default;
+			pointer-events: none;
+		}
 	</style>
 
 </head>
@@ -331,6 +355,30 @@
 							<div class="stack-item">
 								<div class="card portfolio-item layout-2 scale has-shadow">
 									<div class="image-holder">
+										<a class="card-thumb d-block" href="security-suite.html" onclick="return openSecuritySuite(event);" aria-label="Security Suite case study - open project">
+											<img src="assets/img/content/SS%20Main%20Banner.png" alt="">
+											<div class="card-overlay">
+												<div class="heading">
+													<h4 class="title mt-2 mt-md-3 mb-3">Security Suite</h4>
+													<div class="show-project">
+														<div class="card-terms">
+															<span class="terms badge outlined">Enterprise</span>
+															<span class="terms badge outlined">Data Visualization</span>
+														</div>
+														<div class="project-link">
+															<span class="portfolio-link-cta">Show Project</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- Stack Item -->
+							<div class="stack-item">
+								<div class="card portfolio-item layout-2 scale has-shadow">
+									<div class="image-holder">
 										<!-- Card Thumb -->
 									<a class="card-thumb" href="https://parinitadas.com/?page_id=937">
 										<img src="assets/img/content/CS1.png" alt="">
@@ -395,7 +443,7 @@
 												<div class="show-project">
 													<div class="card-terms">
 														<a class="terms badge outlined" href="#">Desktop App</a>
-														<a class="terms badge outlined" href="#">UI/UX</a
+														<a class="terms badge outlined" href="#">UI/UX</a>
 													</div>
 													<div class="project-link">
 														<a href="portfolio-single.html">Show Project</a>
@@ -406,6 +454,9 @@
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 			<!-- ***** Works Area End ***** -->
 
@@ -1127,6 +1178,28 @@
 	
 	<!-- Password Protection for Toshiba Project -->
 	<script>
+		const SECURITY_SUITE_PASSWORD = "PDASDESIGN";
+
+		function openSecuritySuite(event) {
+			if (event) event.preventDefault();
+
+			const unlocked = sessionStorage.getItem("securitySuiteUnlocked") === "true";
+			if (unlocked) {
+				window.location.href = "security-suite.html";
+				return false;
+			}
+
+			const password = prompt("This project is password protected. Please enter the password:");
+			if (password === SECURITY_SUITE_PASSWORD) {
+				sessionStorage.setItem("securitySuiteUnlocked", "true");
+				window.location.href = "security-suite.html";
+			} else if (password !== null) {
+				alert("Incorrect password. Please try again.");
+			}
+
+			return false;
+		}
+
 		function showPasswordPrompt() {
 			const password = prompt("This project is password protected. Please enter the password to view:");
 			if (password === "toshiba2024") {
