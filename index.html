@@ -129,6 +129,28 @@
 			cursor: default;
 			pointer-events: none;
 		}
+		.portfolio-item .card-thumb .portfolio-card-video {
+			display: block;
+			width: 100%;
+			min-height: 550px;
+			object-fit: cover;
+			transition: all var(--transition-function) var(--transition-duration);
+		}
+		@media (max-width: 575px) {
+			.portfolio-item .card-thumb .portfolio-card-video {
+				min-height: 60vh;
+			}
+		}
+		@media (max-width: 1199px) {
+			.stack-item .card-thumb .portfolio-card-video {
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+		.portfolio-item.scale:hover .card-thumb .portfolio-card-video {
+			transform: var(--transform-scale);
+		}
 	</style>
 
 </head>
@@ -377,32 +399,6 @@
 							</div>
 							<!-- Stack Item -->
 							<div class="stack-item">
-								<div class="card portfolio-item layout-2 scale has-shadow">
-									<div class="image-holder">
-										<!-- Card Thumb -->
-									<a class="card-thumb" href="https://parinitadas.com/?page_id=937">
-										<img src="assets/img/content/CS1.png" alt="">
-									</a>
-										<!-- Card Overlay -->
-										<div class="card-overlay">
-											<div class="heading">
-												<h4 class="title mt-2 mt-md-3 mb-3">Data Analysis</h4>
-												<div class="show-project">
-													<div class="card-terms">
-														<a class="terms badge outlined" href="#">Desktop Design</a>
-														<a class="terms badge outlined" href="#">UI/UX</a>
-													</div>
-													<div class="project-link">
-														<a href="portfolio-single.html">Show Project</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Stack Item -->
-							<div class="stack-item">
 								<!-- Card Element -->
 								<div class="card portfolio-item layout-2 scale has-shadow">
 									<div class="image-holder">
@@ -432,21 +428,21 @@
 							<div class="stack-item">
 								<div class="card portfolio-item layout-2 scale has-shadow">
 									<div class="image-holder">
-										<!-- Card Thumb -->
-										<a class="card-thumb" href="https://parinitadas.com/?page_id=1573">
-											<img src="assets/img/content/CS3.png" alt="">
+										<a class="card-thumb" href="interaction-design.html" aria-label="Knowledge Base Creation case study">
+											<video class="portfolio-card-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/content/KB-Creation-Banner.png">
+												<source src="assets/img/content/KB-Creation-Project.mp4" type="video/mp4">
+											</video>
 										</a>
-										<!-- Card Overlay -->
 										<div class="card-overlay">
 											<div class="heading">
-												<h4 class="title mt-2 mt-md-3 mb-3">Logistics Data Visisulation</h4>
+												<h4 class="title mt-2 mt-md-3 mb-3">Knowledge Base Creation</h4>
 												<div class="show-project">
 													<div class="card-terms">
-														<a class="terms badge outlined" href="#">Desktop App</a>
 														<a class="terms badge outlined" href="#">UI/UX</a>
+														<a class="terms badge outlined" href="#">Interaction Design</a>
 													</div>
 													<div class="project-link">
-														<a href="portfolio-single.html">Show Project</a>
+														<a href="interaction-design.html">Show Project</a>
 													</div>
 												</div>
 											</div>
