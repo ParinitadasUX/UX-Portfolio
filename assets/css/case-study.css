@@ -1,0 +1,1100 @@
+/* Editorial case study system — scoped to .case-study-v */
+
+.case-study-page #magic-cursor,
+.case-study-page .preloader {
+	display: none !important;
+}
+
+.case-study-v {
+	--cs-body: "Geist", system-ui, -apple-system, sans-serif;
+	--cs-display: "Bebas Neue", sans-serif;
+	--cs-meta: "DM Mono", ui-monospace, monospace;
+	--cs-quote: "Source Serif 4", Georgia, serif;
+
+	--cs-text: #111111;
+	--cs-muted: #6b7280;
+	--cs-border: #e8e8e8;
+	--cs-bg: #ffffff;
+	--cs-surface: #fafafa;
+
+	--cs-section: clamp(6rem, 10vw, 8.5rem);
+	--cs-stack: clamp(1.5rem, 3.125vw, 2.5rem);
+	--cs-head-gap: clamp(1.5rem, 3.125vw, 2.5rem);
+	--cs-subsection: clamp(2.5rem, 5vw, 3.5rem);
+	--cs-gutter: clamp(1.5rem, 5vw, 3rem);
+	--cs-text-max: 42rem;
+	--cs-page-max: 68rem;
+
+	font-family: var(--cs-body);
+	font-size: 1.0625rem;
+	font-weight: 300;
+	line-height: 1.65;
+	color: var(--cs-text);
+	background: var(--cs-bg);
+}
+
+.case-study-v > .container {
+	max-width: var(--cs-page-max);
+	padding-left: var(--cs-gutter);
+	padding-right: var(--cs-gutter);
+}
+
+/* Typography overrides */
+.case-study-v h1,
+.case-study-v h2,
+.case-study-v h3,
+.case-study-v h4,
+.case-study-v h5,
+.case-study-v h6 {
+	font-family: var(--cs-body);
+	color: var(--cs-text);
+}
+
+.case-study-v .cs-title,
+.case-study-v h2.cs-title {
+	font-size: clamp(2.5rem, 6vw, 4.5rem);
+	font-weight: 400;
+	line-height: 1.05;
+	letter-spacing: -0.02em;
+	margin: 0.5rem 0 1.25rem;
+}
+
+.case-study-v .cs-overline,
+.case-study-v .cs-label,
+.case-study-v h6.title {
+	font-family: var(--cs-body) !important;
+	font-size: 0.75rem !important;
+	font-weight: 400 !important;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	line-height: 1.4 !important;
+	margin: 0 0 0.5rem !important;
+	color: #9ca3af !important;
+}
+
+.case-study-v .cs-section-title {
+	font-family: var(--cs-body);
+	font-size: 1.625rem;
+	font-weight: 500;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
+	text-transform: none;
+	color: var(--cs-text);
+	max-width: var(--cs-text-max);
+	margin: 0 0 1.25rem;
+}
+
+.case-study-v .cs-heading,
+.case-study-v h4.mb-3 {
+	font-family: var(--cs-body);
+	font-size: clamp(1.75rem, 3.5vw, 2.65rem);
+	font-weight: 500;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	text-transform: none;
+	color: var(--cs-text);
+	max-width: var(--cs-text-max);
+	margin: 0 0 1.25rem;
+}
+
+.case-study-v .cs-section-head {
+	margin-bottom: 0;
+	padding-bottom: calc(var(--cs-head-gap) - var(--cs-stack));
+}
+
+.case-study-v .cs-section-head .cs-overline,
+.case-study-v .cs-section-head .cs-label {
+	margin-bottom: 0.125rem !important;
+}
+
+.case-study-v .cs-section-head .cs-section-title,
+.case-study-v .cs-section-head .cs-heading {
+	margin-bottom: 0;
+}
+
+/* Subsection titles inside content blocks stay smaller */
+.case-study-v .cs-subheading {
+	font-family: var(--cs-body);
+	font-size: clamp(1.15rem, 2vw, 1.35rem);
+	font-weight: 500;
+	line-height: 1.35;
+	color: var(--cs-text);
+	max-width: var(--cs-text-max);
+	margin: 0 0 1rem;
+}
+.case-study-v .cs-lede,
+.case-study-v .heading > p,
+.case-study-v .cs-body {
+	max-width: var(--cs-text-max);
+	font-size: 1.0625rem;
+	font-weight: 300;
+	line-height: 1.65;
+	color: var(--cs-text);
+}
+
+.case-study-v .cs-eyebrow {
+	font-family: var(--cs-meta);
+	font-size: 0.72rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--cs-muted);
+	margin-bottom: 1rem;
+}
+
+.case-study-v .cs-eyebrow .terms,
+.case-study-v .portfolio-terms .terms {
+	font-family: var(--cs-meta);
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--cs-muted);
+	text-decoration: none;
+}
+
+.case-study-v .portfolio-meta.d-flex .date {
+	font-family: var(--cs-meta);
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--cs-muted);
+}
+
+.case-study-v .portfolio-meta.d-flex .date::before {
+	display: none;
+}
+
+/* Hero */
+.case-study-v .cs-hero {
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+}
+
+/* Meta grid */
+.case-study-v .cs-meta-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	gap: 1.5rem 2rem;
+	padding: 1.75rem 0 2.5rem;
+	border-top: 1px solid var(--cs-border);
+	border-bottom: 1px solid var(--cs-border);
+	margin-bottom: 0;
+}
+
+.case-study-v .cs-meta-label {
+	font-family: var(--cs-meta);
+	font-size: 0.68rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--cs-muted);
+	margin-bottom: 0.4rem;
+}
+
+.case-study-v .cs-meta-value {
+	font-size: 0.95rem;
+	font-weight: 400;
+	line-height: 1.45;
+	color: var(--cs-text);
+}
+
+.case-study-v .cs-meta-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	font-size: 0.95rem;
+	font-weight: 400;
+	color: var(--cs-text);
+	text-decoration: none;
+	border-bottom: 1px solid var(--cs-text);
+	padding-bottom: 0.1rem;
+	margin-top: 1.5rem;
+	transition: opacity 0.2s ease;
+}
+
+.case-study-v .cs-meta-link:hover {
+	opacity: 0.65;
+	color: var(--cs-text);
+}
+
+/* Phase spacing — editorial stack rhythm */
+.case-study-v section.cs-phase,
+.case-study-v section.case-study-phase {
+	padding: 0;
+}
+
+section.content.case-study-v {
+	padding-top: clamp(2rem, 5vw, 4rem);
+	padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.case-study-v .cs-phase,
+.case-study-v .case-study-phase {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cs-stack);
+	margin-top: var(--cs-section) !important;
+}
+
+.case-study-v .cs-phase > .col-12 {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cs-stack);
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Normalize Bootstrap spacing utilities inside editorial sections */
+.case-study-v .cs-phase .cs-body.mb-4,
+.case-study-v .cs-phase .mb-4:not(.heuristics-card):not(.cs-constraint-card) {
+	margin-bottom: 0 !important;
+}
+
+.case-study-v .cs-phase .mt-2,
+.case-study-v .cs-phase .mt-5,
+.case-study-v .cs-phase .row.mb-4 {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+.case-study-v .cs-phase .cs-quotes-classic {
+	margin-top: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+}
+
+.case-study-v .cs-quote-heading {
+	margin-top: 0;
+	margin-bottom: var(--cs-stack) !important;
+	font-size: 0.75rem;
+	font-weight: 400;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #9ca3af;
+}
+
+.case-study-v .case-study-subtopic {
+	margin-top: clamp(2.5rem, 5vw, 4rem) !important;
+}
+
+.case-study-v .case-study-after-block {
+	margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.case-study-v .row.mt-5[style*="margin-top"] {
+	margin-top: var(--cs-section) !important;
+}
+
+/* Full-bleed media */
+.case-study-v .cs-bleed,
+.case-study-v .portfolio-content .reveal-img.item[style*="100vw"],
+.case-study-v .portfolio-content .reveal-img.item {
+	width: 100vw;
+	max-width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	margin-top: clamp(2.5rem, 5vw, 4rem);
+	margin-bottom: 0;
+}
+
+.case-study-v .portfolio-content {
+	margin-top: 3rem;
+}
+
+.case-study-v .cs-bleed img,
+.case-study-v .portfolio-content img {
+	width: 100%;
+	display: block;
+}
+
+/* Goals + Impact dual column */
+.case-study-v .cs-dual-column {
+	margin-top: 0;
+}
+
+.case-study-v .cs-dual-items {
+	display: flex;
+	flex-direction: column;
+	gap: 1.75rem;
+	margin-top: 0.25rem;
+}
+
+.case-study-v .cs-dual-item-title {
+	font-family: var(--cs-body);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--cs-text);
+	margin: 0 0 0.35rem;
+}
+
+.case-study-v .cs-dual-item-desc {
+	font-family: var(--cs-body);
+	font-size: 1.0625rem;
+	font-weight: 300;
+	line-height: 1.55;
+	color: var(--cs-muted);
+	margin: 0;
+	max-width: none;
+}
+
+.case-study-v .cs-dual-item-desc strong {
+	font-weight: 600;
+	color: var(--cs-text);
+}
+
+/* Impact list */
+.case-study-v .cs-impact-list {
+	max-width: var(--cs-text-max);
+	padding-left: 1.15rem;
+	margin: 0;
+	list-style: disc;
+}
+
+.case-study-v .cs-impact-list li {
+	margin-bottom: 0.65rem;
+	font-size: 1.05rem;
+	line-height: 1.5;
+}
+
+.case-study-v .cs-impact-summary {
+	max-width: var(--cs-text-max);
+	font-size: clamp(1.75rem, 3.5vw, 2.65rem);
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	color: var(--cs-text);
+	margin-bottom: 1.25rem;
+}
+
+/* Stat cards */
+.case-study-v .cs-stat-row {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	margin-top: 0;
+}
+
+.case-study-v .row.g-4:has(.cs-stat),
+.case-study-v .cs-stat-row.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.case-study-v .cs-stat,
+.case-study-v .p-4.bg-light.rounded-3.text-center {
+	border: 1px solid var(--cs-border) !important;
+	border-radius: 0 !important;
+	padding: 1.5rem !important;
+	text-align: left !important;
+	background: var(--cs-surface) !important;
+	box-shadow: none !important;
+}
+
+.case-study-v .cs-stat strong,
+.case-study-v .cs-stat .cs-stat-num,
+.case-study-v .p-4.bg-light.rounded-3.text-center h3,
+.case-study-v .p-4.bg-light.rounded-3.text-center h3.text-primary {
+	display: block;
+	font-family: var(--cs-body);
+	font-size: clamp(1.75rem, 3vw, 2.25rem) !important;
+	font-weight: 500 !important;
+	line-height: 1 !important;
+	margin-bottom: 0.5rem !important;
+	color: var(--cs-text) !important;
+}
+
+.case-study-v .cs-stat span,
+.case-study-v .p-4.bg-light.rounded-3.text-center h6 {
+	font-size: 0.9rem;
+	font-weight: 500;
+	margin-bottom: 0.35rem;
+	color: var(--cs-text);
+}
+
+.case-study-v .p-4.bg-light.rounded-3.text-center small.text-muted {
+	font-size: 0.85rem;
+	color: var(--cs-muted) !important;
+}
+
+/* Numbered insights */
+.case-study-v .cs-insights {
+	max-width: var(--cs-text-max);
+	list-style: none;
+	padding: 0;
+	margin: 0 0 2rem;
+	counter-reset: cs-insight;
+}
+
+.case-study-v .cs-insights li {
+	counter-increment: cs-insight;
+	margin-bottom: 1.5rem;
+	padding-left: 2.75rem;
+	position: relative;
+	line-height: 1.55;
+}
+
+.case-study-v .cs-insights li::before {
+	content: counter(cs-insight) "/";
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-family: var(--cs-meta);
+	font-size: 0.85rem;
+	color: var(--cs-muted);
+}
+
+/* Pull quotes — editorial stack (Security Suite flat quotes only) */
+.case-study-v .cs-quotes-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.5rem;
+	padding: 2rem 0;
+}
+
+.case-study-v blockquote.cs-quote {
+	font-family: var(--cs-quote);
+	font-size: clamp(1.1rem, 2vw, 1.35rem);
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--cs-text);
+	margin: 0 0 1rem;
+	padding: 0;
+	border: 0;
+}
+
+/* Classic fanned quote cards — Associate Mobile */
+.case-study-v .cs-quotes-classic .quote-horizontal-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	padding: 2rem 0;
+	position: relative;
+	height: 300px;
+}
+
+.case-study-v .cs-quotes-classic .quote-horizontal-card {
+	width: 250px;
+	height: 260px;
+	background: #ffffff;
+	border: 1px solid #e9ecef;
+	border-radius: 12px;
+	padding: 1.5rem;
+	transition: all 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: absolute;
+	z-index: 1;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.case-study-v .cs-quotes-classic .quote-horizontal-card:first-child {
+	left: 20%;
+	bottom: 0;
+	transform: rotate(-15deg);
+	z-index: 3;
+}
+
+.case-study-v .cs-quotes-classic .quote-horizontal-card:nth-child(2) {
+	left: 50%;
+	bottom: 40px;
+	transform: translateX(-50%) rotate(0deg);
+	z-index: 4;
+}
+
+.case-study-v .cs-quotes-classic .quote-horizontal-card:nth-child(3) {
+	right: 20%;
+	bottom: 0;
+	transform: rotate(15deg);
+	z-index: 3;
+}
+
+.case-study-v .cs-quotes-classic .quote-horizontal-card:hover {
+	transform: translateY(-15px) rotate(0deg) scale(1.05);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.1);
+	background: #ffffff;
+	z-index: 10;
+}
+
+.case-study-v .cs-quotes-classic .quote-text {
+	font-family: var(--cs-body);
+	font-size: 0.9rem;
+	font-style: italic;
+	color: #2c3e50;
+	margin-bottom: 1rem;
+	line-height: 1.5;
+	position: relative;
+	font-weight: 400;
+	flex-grow: 1;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+
+.case-study-v .cs-quotes-classic .quote-text::before {
+	content: '"';
+	font-size: 2.5rem;
+	color: #007bff;
+	position: absolute;
+	top: -8px;
+	left: -3px;
+	opacity: 0.6;
+	font-family: serif;
+	font-weight: bold;
+	display: block;
+}
+
+.case-study-v .cs-quotes-classic .quote-author {
+	font-family: var(--cs-body);
+	font-size: 0.85rem;
+	color: #6c757d;
+	font-weight: 500;
+	font-style: normal;
+	margin-top: auto;
+	text-align: center;
+}
+
+.case-study-v .cs-quotes-classic .cs-quote-heading {
+	font-family: var(--cs-body);
+	font-size: 1.25rem;
+	font-weight: 500;
+	text-align: center;
+	color: var(--cs-text);
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+/* Heuristics finding cards — Associate Mobile */
+.case-study-v .cs-heuristics-classic .heuristics-heading {
+	font-family: var(--cs-body);
+	font-size: 1.25rem;
+	font-weight: 500;
+	text-align: center;
+	color: var(--cs-text);
+	margin-bottom: 1.5rem;
+}
+
+.case-study-v .cs-heuristics-classic .heuristics-card {
+	transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+	cursor: pointer;
+	border: 2px solid transparent;
+	background: #f8f9fa !important;
+	border-radius: 12px !important;
+	text-align: center !important;
+	box-shadow: none !important;
+}
+
+.case-study-v .cs-heuristics-classic .heuristics-badge {
+	width: 40px;
+	height: 40px;
+	background-color: #333;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	transition: all 0.3s ease;
+}
+
+.case-study-v .cs-heuristics-classic .heuristics-card-body {
+	margin-top: 20px;
+}
+
+.case-study-v .cs-heuristics-classic .heuristics-card-body h6.mb-2 {
+	font-size: 17px;
+}
+
+@media (max-width: 767px) {
+	.case-study-v .cs-quotes-classic .quote-horizontal-container {
+		height: auto;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		padding: 0;
+	}
+
+	.case-study-v .cs-quotes-classic .quote-horizontal-card,
+	.case-study-v .cs-quotes-classic .quote-horizontal-card:first-child,
+	.case-study-v .cs-quotes-classic .quote-horizontal-card:nth-child(2),
+	.case-study-v .cs-quotes-classic .quote-horizontal-card:nth-child(3) {
+		position: relative;
+		left: auto;
+		right: auto;
+		bottom: auto;
+		transform: none;
+		width: 100%;
+		height: auto;
+		min-height: 180px;
+	}
+}
+
+.case-study-v h5.mb-3:not(.case-study-quote-heading) {
+	font-family: var(--cs-body);
+	font-size: clamp(1.15rem, 2vw, 1.35rem);
+	font-weight: 500;
+	line-height: 1.35;
+	max-width: var(--cs-text-max);
+	margin: 0 0 1rem;
+}
+
+.case-study-v .case-study-quote-heading {
+	font-family: var(--cs-body) !important;
+	font-size: 0.72rem !important;
+	font-weight: 400 !important;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--cs-muted) !important;
+	text-align: left !important;
+	margin-bottom: 1.25rem !important;
+}
+
+/* HMW callout — full-bleed to page edges */
+/* Constraints — tighten heading-to-card gap */
+.case-study-v .cs-section-head:has(+ .cs-constraints-row) {
+	padding-bottom: calc(var(--cs-head-gap) - var(--cs-stack) - 1rem);
+}
+
+.case-study-v .cs-hmw {
+	width: 100vw;
+	max-width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	box-sizing: border-box;
+}
+
+.case-study-v .cs-hmw .cs-callout {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	border: none !important;
+	border-radius: 0 !important;
+	background: rgba(33, 150, 243, 1) !important;
+	padding: clamp(1.75rem, 4vw, 2.5rem) max(var(--cs-gutter), calc((100vw - var(--cs-page-max)) / 2 + var(--cs-gutter))) !important;
+	max-width: none;
+	width: 100%;
+	text-align: left;
+	font-weight: 200;
+}
+
+.case-study-v .cs-hmw .cs-callout p {
+	flex: 1;
+	min-width: 0;
+	font-family: var(--cs-body);
+	font-size: clamp(1.875rem, 4vw, 2.5rem) !important;
+	font-weight: 300 !important;
+	line-height: 1.25 !important;
+	letter-spacing: -0.02em;
+	margin: 0 !important;
+	color: #111111 !important;
+	max-width: none;
+	text-align: left;
+}
+
+.case-study-v .cs-hmw .cs-callout strong,
+.case-study-v .cs-hmw .cs-callout .cs-highlight {
+	font-weight: 700;
+	background: none !important;
+	padding: 0 !important;
+	border-radius: 0;
+	color: inherit;
+}
+
+/* Generic callout blocks (non-HMW) */
+.case-study-v .p-4.bg-light.rounded-3.text-start {
+	border: 1px solid var(--cs-border) !important;
+	border-radius: 0 !important;
+	background: var(--cs-surface) !important;
+	padding: 1.75rem !important;
+	max-width: var(--cs-text-max);
+}
+
+.case-study-v .p-4.bg-light.rounded-3.text-start p {
+	font-size: clamp(1.15rem, 2vw, 1.45rem) !important;
+	font-weight: 300 !important;
+	line-height: 1.45 !important;
+	margin: 0 !important;
+	color: var(--cs-text) !important;
+}
+
+.case-study-v .cs-highlight {
+	background-color: #ebedf0;
+	padding: 0.15rem 0.4rem;
+	border-radius: 3px;
+	font-weight: 500;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+
+.case-study-v .cs-chart-grid {
+	align-items: flex-start;
+}
+
+/* Overview — micro-items + image below */
+.case-study-v .cs-overview-layout {
+	display: flex;
+	flex-direction: column;
+	gap: var(--cs-stack);
+}
+
+.case-study-v .cs-overview-items {
+	margin-top: 0;
+}
+
+@media (min-width: 768px) {
+	.case-study-v .cs-overview-items {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.75rem 2rem;
+	}
+}
+
+.case-study-v .cs-overview-figure {
+	margin: 0;
+	width: 100%;
+	max-width: 100%;
+}
+
+.case-study-v .cs-overview-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border: 1px solid var(--cs-border);
+}
+
+.case-study-v .cs-overview-figure .cs-figure-caption {
+	max-width: none;
+	margin-top: 0.65rem;
+	font-size: 0.78rem;
+	line-height: 1.35;
+}
+
+.case-study-v .cs-context-figure,
+.case-study-v .cs-legacy-app {
+	margin: 0;
+	max-width: 100%;
+}
+
+.case-study-v .cs-context-figure {
+	max-width: 20rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.case-study-v .cs-context-figure img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border: 1px solid var(--cs-border);
+}
+
+.case-study-v .cs-legacy-app__video {
+	width: 100%;
+	max-width: 22rem;
+	display: block;
+	margin: 0 auto;
+	border: 1px solid var(--cs-border);
+}
+
+.case-study-v .cs-figure-caption {
+	margin-top: 0.75rem;
+	font-size: 0.88rem;
+	line-height: 1.45;
+	color: var(--cs-muted);
+	max-width: var(--cs-text-max);
+}
+
+.case-study-v .cs-context-figure .cs-figure-caption {
+	max-width: none;
+}
+
+.case-study-v .cs-figure-credit {
+	display: block;
+	margin-top: 0.35rem;
+	font-size: 0.78rem;
+	color: var(--cs-muted);
+	opacity: 0.85;
+}
+
+.case-study-v .cs-chart-grid img {
+	width: 100%;
+	height: auto;
+	max-height: none;
+	object-fit: contain;
+	border-radius: 0;
+}
+
+.case-study-v .cs-validation-note {
+	max-width: var(--cs-text-max);
+	margin-top: var(--cs-subsection);
+	margin-left: auto;
+	margin-right: auto;
+	padding: var(--cs-stack) 0 0;
+	border-top: 1px solid var(--cs-border);
+	font-size: 1rem;
+	font-weight: 300;
+	line-height: 1.55;
+	color: var(--cs-text);
+	text-align: center;
+}
+
+.case-study-v .cs-constraints-row .cs-constraint-card {
+	border: 1px solid var(--cs-border);
+	background: unset;
+	padding: 1.25rem;
+	text-align: left;
+}
+
+.case-study-v .cs-constraints-row h6 {
+	font-size: 17px;
+	font-weight: 600;
+	margin-bottom: 0.35rem;
+}
+
+.case-study-v .cs-constraints-row small {
+	color: var(--cs-muted);
+	font-size: 17px;
+}
+
+.case-study-v .cs-solution-principle {
+	max-width: var(--cs-text-max);
+	font-size: 1.125rem;
+	font-weight: 300;
+	line-height: 1.55;
+	margin-bottom: 0;
+	color: var(--cs-text);
+}
+
+.case-study-v .cs-carousel-caption {
+	text-align: center;
+	margin-top: 1rem;
+	font-size: 0.95rem;
+	font-weight: 300;
+	color: var(--cs-muted);
+	max-width: 40rem;
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1.45;
+}
+
+.case-study-v .cs-carousel-caption strong {
+	color: var(--cs-text);
+	font-weight: 600;
+}
+
+.case-study-v .cs-solution-carousel .carousel-item video,
+.case-study-v .cs-solution-carousel .carousel-item img {
+	max-height: 500px;
+	width: 100%;
+	object-fit: cover;
+}
+
+.case-study-v .cs-takeaways-list {
+	max-width: var(--cs-text-max);
+	padding-left: 1.15rem;
+	margin: 0;
+}
+
+.case-study-v .cs-takeaways-list li {
+	margin-bottom: 0.75rem;
+	font-weight: 300;
+	line-height: 1.5;
+}
+
+.case-study-v .cs-appendix .modern-table {
+	border: 1px solid var(--cs-border);
+	border-radius: 0;
+	overflow: hidden;
+}
+
+.case-study-v .cs-appendix .modern-table thead th {
+	background: var(--cs-surface);
+	border: none;
+	padding: 1rem 1.25rem;
+	font-weight: 600;
+	font-size: 0.875rem;
+}
+
+.case-study-v .cs-appendix .modern-table tbody td {
+	border: none;
+	padding: 1rem 1.25rem;
+	vertical-align: middle;
+	border-bottom: 1px solid var(--cs-border);
+}
+
+.case-study-v .cs-appendix .modern-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.case-study-v .cs-heuristics-classic .carousel-item img {
+	max-height: 400px;
+	width: 100%;
+	object-fit: cover;
+}
+
+.case-study-v .cs-heuristics-classic .cs-carousel-caption {
+	margin-top: 0.4rem;
+}
+
+.case-study-v .cs-solution-carousel + .cs-carousel-caption {
+	margin-top: 0.25rem;
+}
+
+.case-study-v .cs-phase .carousel-control-prev,
+.case-study-v .cs-phase .carousel-control-next {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.case-study-v .cs-phase .carousel-control-prev {
+	left: 20px;
+}
+
+.case-study-v .cs-phase .carousel-control-next {
+	right: 20px;
+}
+
+.case-study-v .cs-research-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	gap: 1rem;
+	margin: 0;
+}
+
+.case-study-v .cs-research-stat {
+	border: 1px solid var(--cs-border);
+	padding: 1.25rem;
+	background: unset;
+}
+
+.case-study-v .cs-research-stat strong {
+	display: block;
+	font-size: 1.5rem;
+	font-weight: 500;
+	line-height: 1.1;
+	margin-bottom: 0.35rem;
+}
+
+.case-study-v .cs-research-stat span {
+	font-size: 0.88rem;
+	color: var(--cs-muted);
+	line-height: 1.4;
+}
+
+/* Bottleneck / constraint cards */
+.case-study-v .cs-bottleneck-row .cs-constraint-card,
+.case-study-v .cs-bottleneck-row .p-3,
+.case-study-v .cs-bottleneck-row .p-4,
+.case-study-v .impact-problem-matrix .border.shadow-sm,
+.case-study-v .row.g-4 .p-4.bg-light.rounded-3.text-center:not(.cs-stat-row *) {
+	border: 1px solid var(--cs-border) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	background: unset !important;
+	text-align: left !important;
+}
+
+.case-study-v .impact-problem-matrix h3.text-primary {
+	color: var(--cs-text) !important;
+}
+
+/* Inline emphasis — prefer .cs-highlight in new content */
+.case-study-v span[style*="background-color: #ebedf0"] {
+	background-color: #ebedf0 !important;
+	padding: 0.15rem 0.4rem !important;
+	border-radius: 3px;
+	font-weight: 500;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+
+/* Results grid (Security Suite) */
+.case-study-v .results-card {
+	border-radius: 0;
+	border-color: var(--cs-border);
+	background: var(--cs-surface);
+}
+
+.case-study-v .results-card h5 {
+	font-weight: 500;
+	color: var(--cs-text);
+}
+
+.case-study-v .alert {
+	border-radius: 0;
+	border: 1px solid var(--cs-border) !important;
+	background: var(--cs-surface) !important;
+	color: var(--cs-text);
+	max-width: var(--cs-text-max);
+}
+
+.case-study-v .alert .text-warning {
+	color: var(--cs-text) !important;
+}
+
+/* Navbar — lighter on case studies */
+.case-study-page .navbar-brand {
+	font-family: var(--cs-body);
+	font-weight: 500;
+	letter-spacing: -0.02em;
+}
+
+.case-study-page .navbar-nav .nav-link {
+	font-family: var(--cs-meta);
+	font-size: 0.75rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+/* CTA footer */
+.case-study-page .cta h2.title {
+	font-family: var(--cs-body);
+	font-weight: 400;
+}
+
+@media (max-width: 767px) {
+	.case-study-v {
+		--cs-gutter: clamp(1.25rem, 6vw, 1.75rem);
+		--cs-section: clamp(4.5rem, 8vw, 6rem);
+		--cs-stack: 1.5rem;
+		--cs-head-gap: 1.5rem;
+	}
+
+	.case-study-v .cs-stat-row {
+		grid-template-columns: 1fr;
+	}
+
+	.case-study-v .cs-meta-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+	}
+
+	.case-study-v .cs-quotes-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.case-study-v .cs-dual-column > [class*="col-"] + [class*="col-"] {
+		margin-top: 0.5rem;
+		padding-top: 1.75rem;
+		border-top: 1px solid var(--cs-border);
+	}
+
+	.case-study-v .cs-dual-items {
+		gap: 1.35rem;
+	}
+
+	.case-study-v .cs-dual-item-title {
+		font-size: 1.0625rem;
+	}
+
+	.case-study-v .cs-dual-item-desc {
+		font-size: 1.0625rem;
+	}
+}

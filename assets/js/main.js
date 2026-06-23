@@ -224,7 +224,7 @@
 
     $('.nav-link').each(function() {
         let href = $(this).attr('href');
-        if (href.length > 1 && href.indexOf('#') != -1) {
+        if (href && href.charAt(0) === '#') {
             $(this).addClass('smooth-anchor');
         }
     });
@@ -232,9 +232,29 @@
     $(document).on('click', '.smooth-anchor', function (event) {
         event.preventDefault();
 
+        var target = $($.attr(this, 'href'));
+        if (!target.length) return;
+
         $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top
+            scrollTop: target.offset().top
         }, 500);
+    });
+
+    function scrollToPageHash() {
+        if (!window.location.hash) return;
+
+        var target = $(window.location.hash);
+        if (!target.length) return;
+
+        $('html, body').animate({
+            scrollTop: target.offset().top
+        }, 500);
+    }
+
+    $(window).on('load', function () {
+        if (window.location.hash) {
+            setTimeout(scrollToPageHash, 3800);
+        }
     });
 
     $(document).on('click', 'a[href="#"]', function (event) {
